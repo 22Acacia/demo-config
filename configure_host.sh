@@ -6,11 +6,11 @@ echo "ensure gsutil is installed"
 /opt/google-cloud-sdk/bin/gcloud components install gsutil
 
 echo "download googlecli provider"
-gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli -o /usr/local/bin/terraform-provider-googlecli
+/opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli -o /usr/local/bin/terraform-provider-googlecli
 chmod +x /usr/local/bin/terraform-provider-googlecli
 
 echo "download sossity and deployable jars"
-gsutil cp gs://build-artifacts-public-eu/*.jar -o /usr/local/lib/
+/opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/*.jar -o /usr/local/lib/
 
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
 which kubectl
