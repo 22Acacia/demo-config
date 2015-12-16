@@ -22,3 +22,8 @@ cat <(echo "") | terraform apply
 
 echo "always save the state no matter what happened above"
 terraform remote push
+
+echo "and save the terraform file as well"
+git add tinyconfig-terraform.tf.json
+git commit -am "generated file and whatnot"
+git push
