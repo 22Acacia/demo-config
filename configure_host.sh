@@ -5,6 +5,10 @@ unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
 echo "ensure gsutil is installed"
 /opt/google-cloud-sdk/bin/gcloud components install gsutil
 
+echo "download tip google provider - we need code that's only in tip right now"
+/opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-google /usr/local/bin/terraform-provider-google
+chmod +x /usr/local/bin/terraform-provider-google
+
 echo "download googlecli provider"
 /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
 chmod +x /usr/local/bin/terraform-provider-googlecli
