@@ -18,6 +18,6 @@ deployment:
       - cd $HOME/$CIRCLE_PROJECT_REPONAME && sed -i /null/d tinyconfig-terraform.tf.json
       - cd $HOME/$CIRCLE_PROJECT_REPONAME && terraform remote config -backend=atlas -backend-config="name=coffeepac/demo-config" -backend-config="access_token=$ATLAS_TOKEN"
       - cd $HOME/$CIRCLE_PROJECT_REPONAME && echo $GOOGLE_CREDENTIALS > account.json
-      - cd $HOME/$CIRCLE_PROJECT_REPONAME && terraform plan
-      - cd $HOME/$CIRCLE_PROJECT_REPONAME && terraform apply
+      - cd $HOME/$CIRCLE_PROJECT_REPONAME && terraform plan <  '\r'
+      - cd $HOME/$CIRCLE_PROJECT_REPONAME && terraform apply < '\r'
       - cd $HOME/$CIRCLE_PROJECT_REPONAME && terraform remote push
