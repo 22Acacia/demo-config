@@ -12,6 +12,7 @@ terraform remote config -backend=atlas -backend-config="name=coffeepac/demo-conf
 
 echo "create the account file"
 echo $GOOGLE_CREDENTIALS > account.json
+export GOOGLE_APPLICATION_CREDENTIALS=$HOME/$CIRCLE_PROJECT_REPONAME/account.json
 
 #  da plan!
 cat <(echo "") | terraform plan

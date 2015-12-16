@@ -4,11 +4,11 @@
              :stagingLocation "gs://hx-test/staging-eu"}
  :provider  {:credentials "${file(\"/home/ubuntu/demo-config/account.json\")}"  :project "hx-test"}
  :pipelines {"pipeline1bts"
-             {:transform-graph ["/usr/local/lib/pipeline1-bundled.jar"]}
+             {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
              "pipeline2bts"
-             {:transform-graph ["/usr/local/lib/pipeline2-bundled.jar"]}
+             {:transform-graph ["/usr/local/lib/pipeline2.jar"]}
              "pipeline3bts"
-             {:transform-graph ["/usr/local/lib/pipeline3-bundled.jar"]}
+             {:transform-graph ["/usr/local/lib/pipeline3.jar"]}
              }
  :sources   {"stream1bts" {:type "kub"}
              "stream2bts" {:type "kub"}
