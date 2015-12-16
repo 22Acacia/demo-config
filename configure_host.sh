@@ -1,8 +1,15 @@
 echo "download and install terraform and custom provider"
 curl https://releases.hashicorp.com/terraform/0.6.8/terraform_0.6.8_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
 unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
+
+echo "ensure gsutil is installed"
+/opt/google-cloud-sdk/bin/gcloud components install gsutil
+
+echo "download googlecli provider"
 gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli -o /usr/local/bin/terraform-provider-googlecli
 chmod +x /usr/local/bin/terraform-provider-googlecli
+
+echo "download sossity and deployable jars"
 gsutil cp gs://build-artifacts-public-eu/*.jar -o /usr/local/lib/
 
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
