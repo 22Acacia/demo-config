@@ -24,4 +24,4 @@ echo "always save the state no matter what happened above"
 terraform remote push
 
 echo "and save the terraform file as well"
-gsutil cp tinyconfig-terraform.tf.json gs://build-artifacts-public-eu/tinyconfig-terraform.tf.json
+sudo  gsutil cp tinyconfig-terraform.tf.json gs://build-artifacts-public-eu/tinyconfig-terraform.tf.json
