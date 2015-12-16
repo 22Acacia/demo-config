@@ -24,6 +24,8 @@ echo "always save the state no matter what happened above"
 terraform remote push
 
 echo "and save the terraform file as well"
+git config --global user.email "builder@circleci.com"
+git config --global user.name "CircleCi"
 git add tinyconfig-terraform.tf.json
 git commit -am "generated file and whatnot"
 git push
