@@ -12,14 +12,17 @@
              }
  :sources   {"stream1bts" {:type "kub"}
              "stream2bts" {:type "kub"}
+             "orion" {:type "kub"}
              }
  :sinks     {"sink1bts" {:type "gcs" :bucket "sink1-bts-test"}
              "sink2bts" {:type "gcs" :bucket "sink2-bts-test"}
              "sink3bts" {:type "gcs" :bucket "sink3-bts-test"}
+             "orionsink" {:type "gcs" :bucket "orionbucket"}
              }
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["pipeline2bts" "pipeline3bts"]}
              {:origin "pipeline2bts" :targets ["sink1bts"  "sink3bts"]}
+             {:origin "orion" :targets ["orionsink"]}
              {:origin "pipeline3bts" :targets ["sink2bts" #_"sink4bts"]}
              ]}
 
