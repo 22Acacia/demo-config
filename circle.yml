@@ -1,0 +1,17 @@
+machine:
+  java:
+    version: oraclejdk8
+
+dependencies:
+  override:
+    - sudo $HOME/$CIRCLE_PROJECT_REPONAME/configure_host.sh
+
+test:
+  override:
+    - echo 'no tests, only deploy!'
+
+deployment:
+  demo:
+    branch: circle-ci-dev
+    commands: 
+      - $HOME/$CIRCLE_PROJECT_REPONAME/deploy_infra.sh
