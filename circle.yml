@@ -11,7 +11,7 @@ test:
     - echo 'no tests, only deploy!'
 
 deployment:
-  demo:
-    branch: circle-ci-dev
+  deploy:
+    branch: master
     commands: 
       - $HOME/$CIRCLE_PROJECT_REPONAME/deploy_infra.sh
