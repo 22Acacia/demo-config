@@ -14,11 +14,11 @@ sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $
 
 echo "download tip google provider - we need code that's only in tip right now"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-google /usr/local/bin/terraform-provider-google
-chmod +x /usr/local/bin/terraform-provider-google
+sudo chmod +x /usr/local/bin/terraform-provider-google
 
 echo "download googlecli provider"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
-chmod +x /usr/local/bin/terraform-provider-googlecli
+sudo chmod +x /usr/local/bin/terraform-provider-googlecli
 
 echo "download sossity and deployable jars"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/*.jar /usr/local/lib/
