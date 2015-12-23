@@ -24,7 +24,8 @@
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["pipeline2bts" "pipeline3bts"]}
              {:origin "pipeline2bts" :targets ["sink1bts"  "sink3bts"]}
-             {:origin "orion" :targets ["orionsink"]}
+             {:origin "orion" :targets ["orionpipe"]}
+             {:origin "orionpipe" :targets ["orionsink"]}
              {:origin "pipeline3bts" :targets ["sink2bts" #_"sink4bts"]}
              ]}
 
