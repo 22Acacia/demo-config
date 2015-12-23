@@ -30,5 +30,5 @@ if [ $? -eq 1 ]; then
 fi
 sudo /opt/google-cloud-sdk/bin/gcloud alpha -h < /bin/echo  #  alpha/beta can be installed via components
 sudo /opt/google-cloud-sdk/bin/gcloud beta -h < /bin/echo   #  sort that out later
-chown ubuntu:ubuntu -R ~/.config/
+sudo chown ubuntu:ubuntu -R ~/.config/
 
