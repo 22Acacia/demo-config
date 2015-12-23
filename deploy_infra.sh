@@ -24,9 +24,6 @@ if [ $ret_var -ne 0 ]; then
   exit $ret_var
 fi
 
-echo "create the account file"
-echo $GOOGLE_CREDENTIALS > account.json  #  assume this works
-export GOOGLE_APPLICATION_CREDENTIALS=$HOME/$CIRCLE_PROJECT_REPONAME/account.json  #  assume this works
 
 #  da plan!
 cat <(echo "") | terraform plan
