@@ -9,6 +9,8 @@
              {:transform-graph ["/usr/local/lib/pipeline2.jar"]}
              "pipeline3bts"
              {:transform-graph ["/usr/local/lib/pipeline3.jar"]}
+             "orionpipe"
+             {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
              }
  :sources   {"stream1bts" {:type "kub"}
              "stream2bts" {:type "kub"}
