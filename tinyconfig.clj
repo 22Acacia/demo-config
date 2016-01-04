@@ -23,7 +23,6 @@
              "sink3bts" {:type "gcs" :bucket "sink3-bts-test"}
              "orionsink" {:type "gcs" :bucket "orionbucket"}
              "orionbq" {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test"}
-
              }
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["pipeline2bts" "pipeline3bts"]}
