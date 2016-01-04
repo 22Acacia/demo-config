@@ -35,6 +35,9 @@ if [ $ret_var -eq 0 ]; then
   ret_var=$?
 fi
 
+echo "current state of the system"
+terraform show
+
 echo "always save the state no matter what happened above"
 terraform remote push
 tf_state_push_ret_var=$?
