@@ -5,12 +5,14 @@
  :provider  {:credentials "${file(\"/home/ubuntu/demo-config/account.json\")}"  :project "hx-test"}
  :pipelines {"pipeline1bts"
              {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
+             "orionidentity"
+             {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
              "pipeline2bts"
              {:transform-graph ["/usr/local/lib/pipeline2.jar"]}
              "pipeline3bts"
              {:transform-graph ["/usr/local/lib/pipeline3.jar"]}
              "orionpipe"
-             {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
+             {:transform-graph ["/usr/local/lib/orion-transform.jar"]}
              }
  :sources   {"stream1bts" {:type "kub"}
              "stream2bts" {:type "kub"}
@@ -20,13 +22,16 @@
              "sink2bts" {:type "gcs" :bucket "sink2-bts-test"}
              "sink3bts" {:type "gcs" :bucket "sink3-bts-test"}
              "orionsink" {:type "gcs" :bucket "orionbucket"}
+             "orionbq" {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test"}
+
              }
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["pipeline2bts" "pipeline3bts"]}
              {:origin "pipeline2bts" :targets ["sink1bts"  "sink3bts"]}
-             {:origin "orion" :targets ["orionpipe"]}
-             {:origin "orionpipe" :targets ["orionsink"]}
-             {:origin "pipeline3bts" :targets ["sink2bts" #_"sink4bts"]}
+             {:origin "orion" :targets ["orionpipe" "orionidentity"]}
+             {:origin "orionidentity" :targets ["orionsink"]}
+             {:origin "orionpipe" :targets ["orionbq"]}
+             {:origin "pipeline3bts" :targets ["sink2bts"]}
              ]}
 
 
