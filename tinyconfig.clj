@@ -18,10 +18,10 @@
              "stream2bts" {:type "kub"}
              "orion" {:type "kub"}
              }
- :sinks     {"sink1bts" {:type "gcs" :bucket "sink1-bts-test"}
-             "sink2bts" {:type "gcs" :bucket "sink2-bts-test"}
-             "sink3bts" {:type "gcs" :bucket "sink3-bts-test"}
-             "orionsink" {:type "gcs" :bucket "orionbucket"}
+ :sinks     {"sink1bts" {:type "gcs" :bucket "sink1-bts-test-two"}
+             "sink2bts" {:type "gcs" :bucket "sink2-bts-test-two"}
+             "sink3bts" {:type "gcs" :bucket "sink3-bts-test-two"}
+             "orionsink" {:type "gcs" :bucket "orionbucket-two"}
              "orionbq" {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test"}
              }
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
