@@ -1,9 +1,11 @@
+cwd=`pwd`
+
 echo "download and install terraform and custom provider"
-curl https://releases.hashicorp.com/terraform/0.6.8/terraform_0.6.8_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
-sudo unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
+#curl https://releases.hashicorp.com/terraform/0.6.8/terraform_0.6.8_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
+#sudo unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
 
 echo "ensure gsutil is installed"
-sudo /opt/google-cloud-sdk/bin/gcloud components install gsutil
+#sudo /opt/google-cloud-sdk/bin/gcloud components install gsutil
 
 echo "create the account file"
 echo $GOOGLE_CREDENTIALS > $HOME/$CIRCLE_PROJECT_REPONAME/account.json
@@ -20,8 +22,13 @@ echo "download googlecli provider"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
 sudo chmod +x /usr/local/bin/terraform-provider-googlecli
 
-echo "download sossity and deployable jars"
-sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/*.jar /usr/local/lib/
+echo "download specified jars"
+while read jar_spec; do
+  jar_spec_arr=($jar_spec)
+  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/${jar_spec_arr[0]}/VERSIONS.txt ${jar_spec_arr[0]}.versions.txt
+  jar_name=`grep ${jar_spec_arr[1]} ${jar_spec_arr[0]}.versions.txt | tr -d '\n'`
+  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/${jar_spec_arr[0]}/${jar_name} /usr/local/bin/${jar_spec_arr[2]}
+done < ${cwd}/jar-specs.txt
 
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
 which kubectl
