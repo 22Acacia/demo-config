@@ -2,3 +2,6 @@ sossity sossity.*standalone sossity-standalone.jar
 pipeline1 pipeline1-[0-9] pipeline1.jar
 pipeline2 pipeline2-[0-9] pipeline2.jar
 pipeline3 pipeline3-[0-9] pipeline3.jar
+orion-transform orion-transform-[0-9] orion-transform.jar
+orion-responsys orion-responsys-[0-9] orion-responsys.jar
+
