@@ -14,9 +14,6 @@ export GOOGLE_APPLICATION_CREDENTIALS=$HOME/$CIRCLE_PROJECT_REPONAME/account.jso
 echo "auth the local sudo gcloud"
 sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $HOME/$CIRCLE_PROJECT_REPONAME/account.json
 
-echo "auth the local user gcloud for terraform/cdf needs"
-/opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $HOME/$CIRCLE_PROJECT_REPONAME/account.json
-
 echo "download tip google provider - we need code that's only in tip right now"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-google /usr/local/bin/terraform-provider-google
 sudo chmod +x /usr/local/bin/terraform-provider-google
@@ -41,4 +38,7 @@ fi
 sudo /opt/google-cloud-sdk/bin/gcloud alpha -h < /bin/echo  #  alpha/beta can be installed via components
 sudo /opt/google-cloud-sdk/bin/gcloud beta -h < /bin/echo   #  sort that out later
 sudo chown ubuntu:ubuntu -R ~/.config/
+
+echo "auth the local user gcloud for terraform/cdf needs"
+/opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $HOME/$CIRCLE_PROJECT_REPONAME/account.json
 
