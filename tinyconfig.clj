@@ -4,33 +4,22 @@
              :stagingLocation "gs://hx-test/staging-eu"}
  :provider  {:credentials "${file(\"/home/ubuntu/demo-config/account.json\")}"  :project "hx-test"}
  :pipelines {"pipeline1bts"
-             {:transform-graph ["/usr/local/lib/pipeline1-bundled.jar"]}
+             {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
              "orionidentity"
-             {:transform-graph ["/usr/local/lib/pipeline1-bundled.jar"]}
-             "pipeline2bts"
-             {:transform-graph ["/usr/local/lib/pipeline2-bundled.jar"]}
-             "pipeline3bts"
-             {:transform-graph ["/usr/local/lib/pipeline3-bundled.jar"]}
+             {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
              "orionpipe"
-             {:transform-graph ["/usr/local/lib/orion-transform-bundled.jar"]}
-             }
+             {:transform-graph ["/usr/local/lib/orion-transform.jar"]}
+             "orionresponsys"
+             {:transform-graph ["/usr/local/lib/orion-responsys.jar"]}}
  :sources   {"stream1bts" {:type "kub"}
-             "stream2bts" {:type "kub"}
-             "orion" {:type "kub"}
-             }
+             "orion" {:type "kub"}}
  :sinks     {"sink1bts" {:type "gcs" :bucket "sink1-bts-test-two"}
-             "sink2bts" {:type "gcs" :bucket "sink2-bts-test-two"}
-             "sink3bts" {:type "gcs" :bucket "sink3-bts-test-two"}
              "orionsink" {:type "gcs" :bucket "orionbucket-two"}
-             "orionbq" {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test"}
-             }
+             "orionresponsyssink" {:type "gcs" :bucket "orionresponsys"}
+             "orionbq" {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test"}}
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
-             {:origin "pipeline1bts" :targets ["pipeline2bts" "pipeline3bts"]}
-             {:origin "pipeline2bts" :targets ["sink1bts"  "sink3bts"]}
+             {:origin "pipeline1bts" :targets ["sink1bts"]}
              {:origin "orion" :targets ["orionpipe" "orionidentity"]}
-             {:origin "orionidentity" :targets ["orionsink"]}
-             {:origin "orionpipe" :targets ["orionbq"]}
-             {:origin "pipeline3bts" :targets ["sink2bts"]}
-             ]}
-
-
+             {:origin "orionidentity" :targets ["orionsink" "orionresponsys"]}
+             {:origin "orionresponsys" :targets ["orionresponsyssink"]}
+             {:origin "orionpipe" :targets ["orionbq"]}]}
