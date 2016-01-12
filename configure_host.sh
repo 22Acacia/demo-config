@@ -1,11 +1,11 @@
 cwd=`pwd`
 
 echo "download and install terraform and custom provider"
-#curl https://releases.hashicorp.com/terraform/0.6.8/terraform_0.6.8_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
-#sudo unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
+curl https://releases.hashicorp.com/terraform/0.6.8/terraform_0.6.8_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
+sudo unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
 
 echo "ensure gsutil is installed"
-#sudo /opt/google-cloud-sdk/bin/gcloud components install gsutil
+sudo /opt/google-cloud-sdk/bin/gcloud components install gsutil
 
 echo "create the account file"
 echo $GOOGLE_CREDENTIALS > $HOME/$CIRCLE_PROJECT_REPONAME/account.json
