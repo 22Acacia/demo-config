@@ -27,7 +27,7 @@ while read jar_spec; do
   jar_spec_arr=($jar_spec)
   sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/${jar_spec_arr[0]}/VERSIONS.txt ${jar_spec_arr[0]}.versions.txt
   jar_name=`grep ${jar_spec_arr[1]} ${jar_spec_arr[0]}.versions.txt | tr -d '\n'`
-  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/${jar_spec_arr[0]}/${jar_name} /usr/local/bin/${jar_spec_arr[2]}
+  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/${jar_spec_arr[0]}/${jar_name} /usr/local/lib/${jar_spec_arr[2]}
 done < ${cwd}/jar-specs.txt
 
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
