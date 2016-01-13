@@ -1,7 +1,7 @@
 cwd=`pwd`
 
 echo "download and install terraform and custom provider"
-curl https://releases.hashicorp.com/terraform/0.6.8/terraform_0.6.8_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
+curl https://releases.hashicorp.com/terraform/0.6.8/terraform_0.6.9_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
 sudo unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
 
 echo "ensure gsutil is installed"
@@ -14,9 +14,9 @@ export GOOGLE_APPLICATION_CREDENTIALS=$HOME/$CIRCLE_PROJECT_REPONAME/account.jso
 echo "auth the local sudo gcloud"
 sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $HOME/$CIRCLE_PROJECT_REPONAME/account.json
 
-echo "download tip google provider - we need code that's only in tip right now"
-sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-google /usr/local/bin/terraform-provider-google
-sudo chmod +x /usr/local/bin/terraform-provider-google
+echo "download googlebigquery provider"
+sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlebigquery /usr/local/bin/terraform-provider-googlebigquery
+sudo chmod +x /usr/local/bin/terraform-provider-googlebigquery
 
 echo "download googlecli provider"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
