@@ -20,6 +20,7 @@
  :sinks     {"sink1bts" {:type "gcs" :bucket "sink1-bts-test-two"}
              "orionsink" {:type "gcs" :bucket "orionbucket-two"}
              "orionresponsyssink" {:type "gcs" :bucket "orionresponsys"}
+             "orionresponsysmailersink" {:type "gcs" :bucket "orionresponsysmailersink"}
              "orionbq" {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test"}}
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["sink1bts"]}
