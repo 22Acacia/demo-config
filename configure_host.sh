@@ -1,7 +1,7 @@
 cwd=`pwd`
 
 echo "download and install terraform and custom provider"
-curl https://releases.hashicorp.com/terraform/0.6.8/terraform_0.6.9_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
+curl https://releases.hashicorp.com/terraform/0.6.9/terraform_0.6.9_linux_amd64.zip -o $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip
 sudo unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
 
 echo "ensure gsutil is installed"
