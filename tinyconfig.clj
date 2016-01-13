@@ -10,7 +10,11 @@
              "orionpipe"
              {:transform-graph ["/usr/local/lib/orion-transform.jar"]}
              "orionresponsys"
-             {:transform-graph ["/usr/local/lib/orion-responsys.jar"]}}
+             {:transform-graph ["/usr/local/lib/orion-responsys.jar"]}
+             "orionresponsysmailer"
+             {:transform-graph ["/usr/local/lib/orion-responsys-mailer.jar"]}
+
+             }
  :sources   {"stream1bts" {:type "kub"}
              "orion" {:type "kub"}}
  :sinks     {"sink1bts" {:type "gcs" :bucket "sink1-bts-test-two"}
@@ -20,6 +24,7 @@
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["sink1bts"]}
              {:origin "orion" :targets ["orionpipe" "orionidentity"]}
-             {:origin "orionidentity" :targets ["orionsink" "orionresponsys"]}
+             {:origin "orionidentity" :targets ["orionsink" "orionresponsys" "orionresponsysmailer"]}
              {:origin "orionresponsys" :targets ["orionresponsyssink"]}
+             {:origin "orionresponsysmailer" :targets ["orionresponsysmailersink"]}
              {:origin "orionpipe" :targets ["orionbq"]}]}
