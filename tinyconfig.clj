@@ -10,7 +10,7 @@
  :provider  {:credentials "${file(\"/home/ubuntu/demo-config/account.json\")}"  :project "hx-test"}
  :pipelines {"pipeline1bts"
              {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
-             "orionidentity"
+             "orionidentityb"
              {:transform-graph ["/usr/local/lib/pipeline1.jar"]}
              "orionpipe"
              {:transform-graph ["/usr/local/lib/orion-transform.jar"]}
@@ -27,7 +27,7 @@
              "orionbq" {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test"}}
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["sink1bts"]}
-             {:origin "orion" :targets ["orionpipe" "orionidentity"]}
+             {:origin "orion" :targets ["orionpipe" "orionidentityb"]}
              {:origin "orionidentity" :targets ["orionsink" "orionresponsys" "orionresponsysmailer"]}
              {:origin "orionresponsys" :targets ["orionresponsyssink"]}
              {:origin "orionresponsysmailer" :targets ["orionresponsysmailersink"]}
