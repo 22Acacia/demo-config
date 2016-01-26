@@ -18,6 +18,10 @@ echo "download googlebigquery provider"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlebigquery /usr/local/bin/terraform-provider-googlebigquery
 sudo chmod +x /usr/local/bin/terraform-provider-googlebigquery
 
+echo "download googleappengine provider"
+sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googleappengine /usr/local/bin/terraform-provider-googleappengine
+sudo chmod +x /usr/local/bin/terraform-provider-googleappengine
+
 echo "download googlecli provider"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
 sudo chmod +x /usr/local/bin/terraform-provider-googlecli
