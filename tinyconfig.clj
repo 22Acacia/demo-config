@@ -22,7 +22,7 @@
              "orionresponsys"
              {:transform-jar "orion-responsys.jar"}
              "orionresponsysmailer"
-             {:transform-jar "/usr/local/lib/orion-responsys-mailer.jar"}}
+             {:transform-jar "orion-responsys-mailer.jar"}}
  :sources   {"stream1bts" {:type "kub"}
              "orion"      {:type "kub"}}
  :sinks     {"sink1bts"                 {:type "gcs" :bucket "sink1-bts-test-two"}
