@@ -14,13 +14,13 @@
              :stagingLocation "gs://hx-test/staging-eu"}
  :provider  {:credentials "${file(\"/home/ubuntu/demo-config/account.json\")}" :project "hx-test"}
  :pipelines {"pipeline1bts"
-             {:transform-jar "/usr/local/lib/pipeline1.jar"}
+             {:transform-jar "pipeline1.jar"}
              "orionidentityb"
-             {:transform-jar "/usr/local/lib/pipeline1.jar"}
+             {:transform-jar "pipeline1.jar"}
              "orionpipe"
-             {:transform-jar "/usr/local/lib/orion-transform.jar"}
+             {:transform-jar "orion-transform.jar"}
              "orionresponsys"
-             {:transform-jar "/usr/local/lib/orion-responsys.jar"}
+             {:transform-jar "orion-responsys.jar"}
              "orionresponsysmailer"
              {:transform-jar "/usr/local/lib/orion-responsys-mailer.jar"}}
  :sources   {"stream1bts" {:type "kub"}
