@@ -5,6 +5,7 @@ machine:
 dependencies:
   override:
     - $HOME/$CIRCLE_PROJECT_REPONAME/configure_host.sh
+    - mvn --fail-never dependency:go-offline || true
 
 test:
   override:
