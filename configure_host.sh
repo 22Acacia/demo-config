@@ -15,23 +15,23 @@ echo "auth the local sudo gcloud"
 sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $HOME/$CIRCLE_PROJECT_REPONAME/account.json
 
 echo "download googlebigquery provider"
-sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlebigquery /usr/local/bin/terraform-provider-googlebigquery
+sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/terraform-provider-googlebigquery /usr/local/bin/terraform-provider-googlebigquery
 sudo chmod +x /usr/local/bin/terraform-provider-googlebigquery
 
 echo "download googleappengine provider"
-sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googleappengine /usr/local/bin/terraform-provider-googleappengine
+sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/terraform-provider-googleappengine /usr/local/bin/terraform-provider-googleappengine
 sudo chmod +x /usr/local/bin/terraform-provider-googleappengine
 
 echo "download googlecli provider"
-sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
+sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
 sudo chmod +x /usr/local/bin/terraform-provider-googlecli
 
 echo "download specified jars"
 while read jar_spec; do
   jar_spec_arr=($jar_spec)
-  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/${jar_spec_arr[0]}/VERSIONS.txt ${jar_spec_arr[0]}.versions.txt
+  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/${jar_spec_arr[0]}/VERSIONS.txt ${jar_spec_arr[0]}.versions.txt
   jar_name=`grep ${jar_spec_arr[1]} ${jar_spec_arr[0]}.versions.txt | tr -d '\n'`
-  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://build-artifacts-public-eu/${jar_spec_arr[0]}/${jar_name} /usr/local/lib/${jar_spec_arr[2]}
+  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/${jar_spec_arr[0]}/${jar_name} /usr/local/lib/${jar_spec_arr[2]}
 done < ${cwd}/jar-specs.txt
 
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
