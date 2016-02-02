@@ -1,3 +1,5 @@
+set -ex
+
 cwd=`pwd`
 
 echo "download and install terraform and custom provider"
@@ -26,14 +28,16 @@ echo "download googlecli provider"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
 sudo chmod +x /usr/local/bin/terraform-provider-googlecli
 
+echo "create specified jars list"
+cd version-parser
+lein run
+
 echo "download specified jars"
 while read jar_spec; do
   jar_spec_arr=($jar_spec)
-  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/${jar_spec_arr[0]}/VERSIONS.txt ${jar_spec_arr[0]}.versions.txt
-  jar_name=`grep ${jar_spec_arr[1]} ${jar_spec_arr[0]}.versions.txt | tr -d '\n'`
-  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/${jar_spec_arr[0]}/${jar_name} /usr/local/lib/${jar_spec_arr[2]}
-done < ${cwd}/jar-specs.txt
-
+  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/${jar_spec_arr[0]} /usr/local/lib/${jar_spec_arr[1]}
+done < ${cwd}/jar-versions
+exit 0
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
 which kubectl
 if [ $? -eq 1 ]; then

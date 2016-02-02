@@ -16,15 +16,20 @@
              :stagingLocation "gs://hx-test/staging-eu"}
  :provider  {:credentials "${file(\"/home/ubuntu/demo-config/account.json\")}" :project "hx-test"}
  :pipelines {"pipeline1bts"
-             {:transform-jar "pipeline1.jar"}
+             {:transform-jar "pipeline1-0.1-ALPHA.jar"
+              :key "pipeline1"}
              "orionidentityb"
-             {:transform-jar "pipeline1.jar"}
+             {:transform-jar  "pipeline1-0.1-ALPHA.jar"
+              :key "pipeline1"}
              "orionpipe"
-             {:transform-jar "orion-transform.jar"}
+             {:transform-jar "orion-transform-0.1-ALPHA.jar"
+             :key "orion-transform"}
              "orionresponsys"
-             {:transform-jar "orion-responsys.jar"}
+             {:transform-jar "orion-responsys-0.1-ALPHA.jar"
+              :key "orion-responsys"}
              "orionresponsysmailer"
-             {:transform-jar "orion-responsys-mailer.jar"}}
+             {:transform-jar "orion-responsys-mailer-0.1-ALPHA.jar"
+             :key "orion-responsys-mailer"}}
  :sources   {"stream1bts" {:type "kub"}
              "orion"      {:type "kub"}}
  :sinks     {"sink1bts"                 {:type "gcs" :bucket "sink1-bts-test-two"}

@@ -1,3 +1,5 @@
+set -xe
+
 echo "go to repo working directory"
 cd $HOME/$CIRCLE_PROJECT_REPONAME
 

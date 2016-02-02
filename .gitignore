@@ -1,0 +1,4 @@
+jar-versions
+.terraform/*
+*tf*
+account.json
