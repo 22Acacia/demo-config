@@ -13,5 +13,5 @@
   (doseq [[k v]pipelines] 
     (spit "../jar-versions" 
       (clojure.string/join " " 
-        [(clojure.string/join "/" [(:key v) (:transform-jar v)]) (:transform-jar v)]))))
+        [(clojure.string/join "/" [(:key v) (:transform-jar v)]) (:transform-jar v) "\n"]) :append true)))
 
