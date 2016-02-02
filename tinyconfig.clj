@@ -1,6 +1,8 @@
 {:config    {:remote-composer-classpath "/usr/local/lib/angleddream-bundled.jar"
              :local-angleddream-path    "/home/bradford/proj/angled-dream/target/angleddream-bundled-0.1-ALPHA.jar"
              :remote-libs-path          "/usr/local/lib"
+             :sink-resource-version "1"
+             :source-resource-version "1"
              :error-buckets             false}
 
  :cluster   {:name        "hxhstack" :initial_node_count 4 :master_auth {:username "hx" :password "hstack"}
@@ -29,7 +31,7 @@
              "orionsink"                {:type "gcs" :bucket "orionbucket-two"}
              "orionresponsyssink"       {:type "gcs" :bucket "orionresponsys"}
              "orionresponsysmailersink" {:type "gcs" :bucket "orionresponsysmailersink"}
-             "orionbq"                  {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test"}}
+             "orionbq"                  {:type "bq" :bigQueryDataset "hx_orion" :bigQueryTable "hx_test" :bigQuerySchema "orion.json"}}
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["sink1bts"]}
              {:origin "orion" :targets ["orionpipe" "orionidentityb"]}
