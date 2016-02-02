@@ -43,7 +43,7 @@ terraform remote push
 tf_state_push_ret_var=$?
 
 echo "and save the terraform file as well"
-sudo /opt/google-cloud-sdk/bin/gsutil cp tinyconfig-terraform.tf.json gs://build-artifacts-public-eu/tinyconfig-terraform.tf.json
+sudo /opt/google-cloud-sdk/bin/gsutil cp tinyconfig-terraform.tf.json gs://${GSTORAGE_DEST_BUCKET}/tinyconfig-terraform.tf.json
 tf_conf_push_ret_var=$?
 
 exit $(($ret_var || $tf_state_push_ret_var || $tf_conf_push_ret_var ))
