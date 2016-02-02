@@ -1,9 +1,13 @@
-{:config    {:remote-composer-classpath "/usr/local/lib/angleddream-bundled.jar"
+{:config    {:remote-composer-classpath "/usr/local/lib/angleddream-bundled-0.1-ALPHA.jar"
              :local-angleddream-path    "/home/bradford/proj/angled-dream/target/angleddream-bundled-0.1-ALPHA.jar"
              :remote-libs-path          "/usr/local/lib"
              :sink-resource-version "1"
              :source-resource-version "1"
-             :error-buckets             false}
+             :error-buckets             false
+             :gstorage-jar-info {:angleddream {:name "angleddream-bundled-0.1-ALPHA.jar"
+                                               :key  "angleddream"}
+                                 :sossity     {:name "sossity-0.1.0-SNAPSHOT-standalone.jar"
+                                               :key  "sossity"}}}
 
  :cluster   {:name        "hxhstack" :initial_node_count 4 :master_auth {:username "hx" :password "hstack"}
              :node_config {:oauth_scopes ["https://www.googleapis.com/auth/compute"
