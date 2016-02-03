@@ -1,4 +1,4 @@
-set -ex
+set -x
 
 cwd=`pwd`
 
@@ -37,14 +37,14 @@ while read jar_spec; do
   jar_spec_arr=($jar_spec)
   sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/${jar_spec_arr[0]} /usr/local/lib/${jar_spec_arr[1]}
 done < ${cwd}/jar-versions
-exit 0
+
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
 which kubectl
 if [ $? -eq 1 ]; then
   sudo /opt/google-cloud-sdk/bin/gcloud components install kubectl -q
 fi
-sudo /opt/google-cloud-sdk/bin/gcloud alpha -h < /bin/echo  #  alpha/beta can be installed via components
-sudo /opt/google-cloud-sdk/bin/gcloud beta -h < /bin/echo   #  sort that out later
+sudo /opt/google-cloud-sdk/bin/gcloud components install alpha -q
+sudo /opt/google-cloud-sdk/bin/gcloud components install beta -q
 sudo chown ubuntu:ubuntu -R ~/.config/
 
 echo "auth the local user gcloud for terraform/cdf needs"
