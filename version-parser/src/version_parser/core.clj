@@ -19,7 +19,7 @@
   (doseq [[k v]pipelines] 
     (spit "../jar-versions" 
       (clojure.string/join " " 
-        [(clojure.string/join "/" [(:bucket v) (:key v) (:transform-jar v)]) (:transform-jar v) "\n"]) :append true))
+        [(:bucket v) (clojure.string/join "/" [(:key v) (:transform-jar v)]) (:transform-jar v) "\n"]) :append true))
 
 
   ; find the non-pipeline jars
@@ -28,4 +28,4 @@
   (doseq [[k v]otherjars]
     (spit "../jar-versions"
       (clojure.string/join " "
-        [(clojure.string/join "/" [(:bucket v) (:key v) (:name v)]) (:name v) "\n"]) :append true)))
+        [(:bucket v) (clojure.string/join "/" [(:key v) (:name v)]) (:name v) "\n"]) :append true)))
