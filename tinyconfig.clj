@@ -40,7 +40,7 @@
              "orionsink"                {:type "gcs" :bucket "orionbucket-two"}
              "orionresponsyssink"       {:type "gcs" :bucket "orionresponsys"}
              "orionresponsysmailersink" {:type "gcs" :bucket "orionresponsysmailersink"}
-             "orionbq"                  {:type "bq" :bigQueryDataset "hx_orion_staging" :bigQueryTable "hx_orion" :bigQuerySchema "orion.json"}}
+             "orionbq"                  {:type "bq" :bigQueryDataset "hx_orion_staging" :bigQueryTable "hx_orion" :bigQuerySchema "/home/ubuntu/demo-config/orion.json"}}
  :edges     [{:origin "stream1bts" :targets ["pipeline1bts"]}
              {:origin "pipeline1bts" :targets ["sink1bts"]}
              {:origin "orion" :targets ["orionpipe" "orionidentityb"]}
