@@ -4,10 +4,12 @@
              :sink-resource-version "1"
              :source-resource-version "1"
              :error-buckets             false
-             :gstorage-jar-info {:angleddream {:name "angleddream-bundled-0.1-ALPHA.jar"
-                                               :key  "angleddream"}
-                                 :sossity     {:name "sossity-0.1.0-SNAPSHOT-standalone.jar"
-                                               :key  "sossity"}}}
+             :system-jar-info {:angleddream {:name "angleddream-bundled-0.1-ALPHA.jar"
+                                             :bucket "build-artifacts-public-eu"
+                                             :key  "angleddream"}
+                               :sossity     {:name "sossity-0.1.0-SNAPSHOT-standalone.jar"
+                                             :bucket "build-artifacts-public-eu"
+                                             :key  "sossity"}}}
 
  :cluster   {:name        "hxhstack" :initial_node_count 4 :master_auth {:username "hx" :password "hstack"}
              :node_config {:oauth_scopes ["https://www.googleapis.com/auth/compute"
@@ -21,19 +23,24 @@
  :provider  {:credentials "${file(\"/home/ubuntu/demo-config/account.json\")}" :project "hx-test"}
  :pipelines {"pipeline1bts"
              {:transform-jar "pipeline1-0.1-ALPHA.jar"
+              :bucket "build-artifacts-public-eu"
               :key "pipeline1"}
              "orionidentityb"
              {:transform-jar  "pipeline1-0.1-ALPHA.jar"
+              :bucket "build-artifacts-public-eu"
               :key "pipeline1"}
              "orionpipe"
              {:transform-jar "orion-transform-0.1-ALPHA.jar"
-             :key "orion-transform"}
+              :bucket "build-artifacts-public-eu"
+              :key "orion-transform"}
              "orionresponsys"
              {:transform-jar "orion-responsys-0.1-ALPHA.jar"
+              :bucket "build-artifacts-public-eu"
               :key "orion-responsys"}
              "orionresponsysmailer"
              {:transform-jar "orion-responsys-mailer-0.1-ALPHA.jar"
-             :key "orion-responsys-mailer"}}
+              :bucket "build-artifacts-public-eu"
+              :key "orion-responsys-mailer"}}
  :sources   {"stream1bts" {:type "kub"}
              "orion"      {:type "kub"}}
  :sinks     {"sink1bts"                 {:type "gcs" :bucket "sink1-bts-test-two"}
