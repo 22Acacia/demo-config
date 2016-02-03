@@ -43,8 +43,8 @@ which kubectl
 if [ $? -eq 1 ]; then
   sudo /opt/google-cloud-sdk/bin/gcloud components install kubectl -q
 fi
-sudo /opt/google-cloud-sdk/bin/gcloud components install alpha 
-sudo /opt/google-cloud-sdk/bin/gcloud components install beta
+sudo /opt/google-cloud-sdk/bin/gcloud components install alpha -q
+sudo /opt/google-cloud-sdk/bin/gcloud components install beta -q
 sudo chown ubuntu:ubuntu -R ~/.config/
 
 echo "auth the local user gcloud for terraform/cdf needs"
