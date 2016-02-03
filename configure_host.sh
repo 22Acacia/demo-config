@@ -35,7 +35,7 @@ lein run
 echo "download specified jars"
 while read jar_spec; do
   jar_spec_arr=($jar_spec)
-  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${jar_spec_arr[0]}/${jar_spec_arr[1]} /usr/local/lib/${jar_spec_arr[2]}
+  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/${jar_spec_arr[0]} /usr/local/lib/${jar_spec_arr[1]}
 done < ${cwd}/jar-versions
 
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
