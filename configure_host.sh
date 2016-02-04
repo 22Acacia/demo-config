@@ -33,9 +33,9 @@ cd version-parser
 lein run
 
 echo "download specified jars"
-while read jar_spec; do
-  jar_spec_arr=($jar_spec)
-  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/${jar_spec_arr[0]} /usr/local/lib/${jar_spec_arr[1]}
+while read jar_versions; do
+  jar_versions_arr=($jar_versions)
+  sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${jar_versions_arr[0]}/${jar_versions_arr[1]} /usr/local/lib/${jar_versions_arr[2]}
 done < ${cwd}/jar-versions
 
 echo "ensure kubectl is installed and that dataflow commands for gcloud are installed"
