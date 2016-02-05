@@ -9,9 +9,11 @@ sudo unzip $HOME/$CIRCLE_PROJECT_REPONAME/terraform.zip -d /usr/local/bin/
 echo "ensure gsutil is installed"
 sudo /opt/google-cloud-sdk/bin/gcloud components install gsutil
 
-echo "create the account file"
+echo "create the account file in silence"
+set +x
 echo $GOOGLE_CREDENTIALS > $HOME/$CIRCLE_PROJECT_REPONAME/account.json
 export GOOGLE_APPLICATION_CREDENTIALS=$HOME/$CIRCLE_PROJECT_REPONAME/account.json
+set -x
 
 echo "auth the local sudo gcloud"
 sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file $HOME/$CIRCLE_PROJECT_REPONAME/account.json
