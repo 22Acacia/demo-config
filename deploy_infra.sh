@@ -1,13 +1,11 @@
 set -x
 
-echo "go to repo working directory"
-cd $HOME/$CIRCLE_PROJECT_REPONAME
-
 echo "generate full set of configfiles"
 config_list=""
 for config in $(ls *.clj); do
   config_list="${config_list},${config}"
 done
+config_list=${config_list:1:${#config_list}-1}
 
 echo "create terraform file"
 java -jar /usr/local/lib/sossity-0.1.0-SNAPSHOT-standalone.jar -c $config_list -o tinyconfig-terraform.tf.json
@@ -17,11 +15,6 @@ if [ $ret_var -ne 0 ]; then
   echo "failed to generate terraform config.  Abort mission!"
   exit $ret_var
 fi
-
-#  it has a bug, null is the value of the subscribers.  this breaks things so remove it
-#  this bug should be going away soon so we're not super worried about it
-sed -i /null/d tinyconfig-terraform.tf.json
-
 
 echo "regester for remote state management"
 terraform remote config -backend=atlas -backend-config="name=coffeepac/demo-config" -backend-config="access_token=$ATLAS_TOKEN"
