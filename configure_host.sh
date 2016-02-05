@@ -28,9 +28,14 @@ echo "download googlecli provider"
 sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/terraform-provider-googlecli /usr/local/bin/terraform-provider-googlecli
 sudo chmod +x /usr/local/bin/terraform-provider-googlecli
 
+echo "download version parser"
+sudo /opt/google-cloud-sdk/bin/gsutil cp gs://${GSTORAGE_DEST_BUCKET}/version/version-parser-1.0.0-standalone.jar /usr/local/bin/version-parser-1.0.0-standalone.jar
+
 echo "create specified jars list"
-cd version-parser
-lein run
+cat /dev/null > jar-versions
+for config in $(ls *.clj); do
+  java -jar /usr/local/bin/version-parser-1.0.0-standalone.jar -c $config -o jar-versions
+done
 
 echo "download specified jars"
 while read jar_versions; do
