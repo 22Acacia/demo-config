@@ -15,4 +15,4 @@ deployment:
   deploy:
     branch: master
     commands: 
-      - $HOME/$CIRCLE_PROJECT_REPONAME/deploy_infra.sh
+      - cd $HOME/$CIRCLE_PROJECT_REPONAME && ./deploy_infra.sh
