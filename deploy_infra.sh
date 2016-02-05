@@ -3,8 +3,14 @@ set -x
 echo "go to repo working directory"
 cd $HOME/$CIRCLE_PROJECT_REPONAME
 
+echo "generate full set of configfiles"
+config_list=""
+for config in $(ls *.clj); do
+  config_list="${config_list},${config}"
+done
+
 echo "create terraform file"
-java -jar /usr/local/lib/sossity-0.1.0-SNAPSHOT-standalone.jar -c "$HOME/$CIRCLE_PROJECT_REPONAME/tinyconfig.clj" -o "$HOME/$CIRCLE_PROJECT_REPONAME/tinyconfig-terraform.tf.json"
+java -jar /usr/local/lib/sossity-0.1.0-SNAPSHOT-standalone.jar -c $config_list -o tinyconfig-terraform.tf.json
 ret_var=$?
 
 if [ $ret_var -ne 0 ]; then
