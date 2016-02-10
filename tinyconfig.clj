@@ -2,7 +2,7 @@
              :remote-libs-path          "/usr/local/lib"
              :sink-resource-version "1"
              :source-resource-version "1"
-             :appengine-gstoragekey "hxtest-1.0-SNAPSHOT"
+             :appengine-gstoragekey "source-1.0-SNAPSHOT"
              :default-sink-docker-image "gcr.io/hx-test/store-sink"
              :error-buckets             false
              :system-jar-info {:angleddream {:name "angleddream-bundled-0.1-ALPHA.jar"
