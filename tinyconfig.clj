@@ -24,7 +24,7 @@
  :provider  {:credentials "${file(\"/home/ubuntu/demo-config/account.json\")}"
              :project "hx-test"}
  :pipelines {"testpipeline"
-             {:transform-jar "identitypipeline-bundled-0.1-ALPHA.jar",
+             {:transform-jar "identitypipeline-bundled-0.1-ALPHA.jar"
               :pail "build-artifacts-public-eu"
               :key "sossity-identity-pipeline-java"}
              "orionidentitypipe"
@@ -32,7 +32,7 @@
               :pail "build-artifacts-public-eu"
               :key "sossity-identity-pipeline-java"}
              "orionbqfilter"
-             {:transform-jar "orion-transform-0.1-ALPHA.jar"
+             {:transform-jar "orion-transform-bundled-0.1-ALPHA.jar"
               :pail "build-artifacts-public-eu"
               :key "orion-transform"}}
  :sources   {"testendpoint" {:type "gae"}
