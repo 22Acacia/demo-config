@@ -11,7 +11,7 @@
                                :sossity     {:name "sossity-0.1.0-SNAPSHOT-standalone.jar"
                                              :pail "build-artifacts-public-eu"
                                              :key  "sossity"}}}
- :cluster   {:name        "hxhstack" :initial_node_count 4
+ :cluster   {:name        "hxhstack" :initial_node_count 2
              :master_auth {:username "hx" :password "hstack"}
              :node_config {:oauth_scopes ["https://www.googleapis.com/auth/compute"
                                           "https://www.googleapis.com/auth/devstorage.read_only"
@@ -27,24 +27,11 @@
              {:transform-jar "identitypipeline-bundled-0.1-ALPHA.jar"
               :pail "build-artifacts-public-eu"
               :key "sossity-identity-pipeline-java"}
-             "orionidentitypipe"
-             {:transform-jar  "identitypipeline-bundled-0.1-ALPHA.jar"
-              :pail "build-artifacts-public-eu"
-              :key "sossity-identity-pipeline-java"}
-             "orionbqfilter"
-             {:transform-jar "orion-transform-bundled-0.1-ALPHA.jar"
-              :pail "build-artifacts-public-eu"
-              :key "orion-transform"}}
+}
  :sources   {"testendpoint" {:type "gae"}
-             "orion"        {:type "gae"}}
+             }
  :sinks     {"testsink"     {:type "gcs" :bucket "testsink-bucket"}
-             "orionsink"    {:type "gcs" :bucket "orionsinkbucket"}
-             "orionbq"      {:type "bq"
-                             :bigQueryDataset "hx_orion_staging"
-                             :bigQueryTable "hx_orion"
-                             :bigQuerySchema "/home/ubuntu/demo-config/orion.json"}}
+             }
  :edges     [{:origin "testendpoint" :targets ["testpipeline"]}
              {:origin "testpipeline" :targets ["testsink"]}
-             {:origin "orion" :targets ["orionbqfilter" "orionidentitypipe"]}
-             {:origin "orionidentitypipe" :targets ["orionsink"]}
-             {:origin "orionbqfilter" :targets ["orionbq"]}]}
+             ]}
